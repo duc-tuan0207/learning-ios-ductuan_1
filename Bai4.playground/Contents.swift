@@ -44,5 +44,88 @@ func carRedAnd4Wheel (){
 print(carRedAnd4Wheel())
 
 let DanhsachXe:[String] = ["CarA","CarB","CarC","CarD","CarE","CarF"]
+print(cars.map(\.name))
+ 
+var typeCarSet = Set<String>()
+for type in typeCars {
+    typeCarSet.insert(type.name)
+}
+print(typeCarSet)
+print(typeCarSet.count)
+func search(){
+    let Search = typeCars.contains{
+        $0.name == "SUV" && $0.numbersOfWheel == 4
+    }
+    print(Search)
+}
+search()
 
-print(DanhSachXe)
+func locXe () -> [String : [Car]]{
+    var danhSach : [String : [Car]] = [:]
+    for search in cars {
+        danhSach[search.color, default : []].append(search)
+    }
+    return danhSach
+}
+locXe()
+func dem(){
+    var soLuong : [String : Int] = [:]
+    for car in cars {
+        soLuong[car.color, default:0] += 1
+    }
+    for (color, count) in soLuong{
+        print("\(color) \(count)")
+    }
+    
+}
+dem()
+
+func loaiXe(cars:[Car], tenLoaiXe : String) -> [Car] {
+    let numbers = cars.filter{
+        $0.typeCar.name == tenLoaiXe
+    }
+    return numbers
+}
+let xe = loaiXe(cars: cars, tenLoaiXe: "SUV")
+    for Xe in xe {
+        print(Xe.name)
+    }
+
+func banhs(car:[Car]){
+    guard let Banhs = car.max(by: {
+        $0.typeCar.numbersOfWheel < $1.typeCar.numbersOfWheel
+    })else {
+        print("Rỗng")
+        return
+    }
+    print(Banhs.name)
+}
+banhs(car: cars)
+func DemXe(cars:[Car]) {
+    var ketqua :[String : Int] = [:]
+    for car in cars {
+        let loaiXe = car.typeCar.name
+        ketqua[loaiXe, default: 0] += 1
+    }
+    for(loaiXe, soLuong) in ketqua{
+        print("\(loaiXe) : \(soLuong) xe")
+    }
+}
+DemXe(cars: cars)
+
+func KiemTra (cars:[Car])-> Bool {
+    let id = Set(cars.map(\.name))
+    if id.count != cars.count {
+        print("Id đã bị trùng")
+        return false
+    }
+    let banhXe = cars.allSatisfy{
+        $0.typeCar.numbersOfWheel > 0
+    }
+    if !banhXe {
+        print("bánh xe phải > 0")
+        return false
+    }
+    return true
+}
+print(KiemTra(cars:cars))
