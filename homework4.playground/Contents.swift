@@ -139,6 +139,7 @@ enum RegisstrationError: Error {
     case tooShort
     case noNumber
     case noError
+    case sucess
 }
 func register(username: String, password: String) throws -> Error {
     if username.isEmpty {
