@@ -242,7 +242,7 @@ func handleSettingsAction(action: SettingsAction) -> String {
     case .notifications:
         return "ban da vao cai dat thong bao"
     case .appearance:
-        return "ban dang o cai dat giao dien
+        return "ban dang o cai dat giao dien"
     case .help:
         return "ban can toi giup van de gi"
     case .logout:
